@@ -24,6 +24,14 @@ namespace pract8
 
         private void Salidas_Load(object sender, EventArgs e)
         {
+            BaseDatos productos = new BaseDatos();
+            string sql3 = "SELECT nombre AS Producto, cantidad  FROM productos";
+            productos.buscar(sql3);
+            dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProductos.RowHeadersVisible = false;
+            dgvProductos.DataSource = productos.ds.Tables[0];
+
             string sql = "SELECT s.id,p.nombre AS Producto,s.cantidad AS Cantidad FROM salidas s INNER JOIN productos p ON s.producto_id = p.id";
             string sql2 = "SELECT * FROM productos";
             
